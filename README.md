@@ -28,4 +28,4 @@ Either press `⌘Y` to Quick Look the result, or press `<enter>` copy it to your
 
 The emoji index was built from [i-Naji/emojis](https://github.com/i-Naji/emojis).
 The displayed emoji images are from [joypixels/emoji-assets](https://github.com/joypixels/emoji-assets).
-The lightning fast search is powered by [Algolia](https://www.algolia.com) using the _same_ index as [gimoji.dev](https://gitmoji.dev).
+The lightning fast search is powered by [Algolia](https://www.algolia.com).
