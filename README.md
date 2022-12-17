@@ -16,10 +16,10 @@ This workflow allows you to quickly search for and copy emoji to your clipboard.
 
 ## Usage
 
-Just type `emoji` followed by your search query.
+Just type `ej` followed by your search query.
 
 ```
-emoji rocket
+ej smile
 ```
 
 Either press `⌘Y` to Quick Look the result, or press `<enter>` copy it to your clipboard.
