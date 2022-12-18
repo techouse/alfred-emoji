@@ -64,6 +64,8 @@ Future<void> _performSearch(
             copy: emoji.char,
             largeType: emoji.name,
           ),
+          quickLookUrl:
+              Uri.https('emojipedia.org', 'emoji/${emoji.char}/').toString(),
           icon: AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),
           mods: {
             {AlfredItemModKey.alt}: AlfredItemMod(
