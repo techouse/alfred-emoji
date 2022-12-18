@@ -27,15 +27,10 @@ Either press `⌘Y` to Quick Look the result, or press `<enter>` copy it to your
 ### Modifier keys
 
 - <kbd>return</kbd> (↵): Copy the symbol of the selected emoji (e.g. "☕️") to your clipboard.
-
 - <kbd>option+return</kbd> (⌥↵): Copy the code of the selected emoji) (e.g. `:coffee:`) to your clipboard.
-
 - <kbd>ctrl+return</kbd> (⌃↵): Copy the hexadecimal HTML Entity of the selected emoji) (e.g. `&#x2615;`) to your clipboard.
-
 - <kbd>shift+return</kbd> (⇧↵): Copy the Python source of the selected emoji) (e.g. `u"\U0002615"`) to your clipboard.
-- 
 - <kbd>shift+ctrl+return</kbd> (⇧⌃↵): Copy the formal Unicode notation of the selected emoji) (e.g. `U+2615`) to your clipboard.
-
 - <kbd>cmd+return</kbd> (⌘↵): Copy the symbol of the selected emoji (e.g. "☕️") directly to your front-most application.
 
 ### Note
