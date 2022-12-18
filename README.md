@@ -44,6 +44,8 @@ Possible **integer** values are:
 - `4` - *medium-dark* skin tone,
 - `5` - *dark* skin tone
 
+![skin_tone_setup](skin_tone_setup.png)
+
 ### Notes
 
 Kudos to [jsumners/alfred-emoji](https://github.com/jsumners/alfred-emoji) for the initial inspiration.
