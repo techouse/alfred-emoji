@@ -38,11 +38,11 @@ Either press `⌘Y` to Quick Look the result, or press `<enter>` copy it to your
 To change the emoji skin tone of all the emojis that support it, set the `alfred_emoji_skin_tone` environment variable in Alfred.
 Possible **integer** values are:
 
-- `1` - *light* skin tone,
-- `2` - *medium-light* skin tone,
-- `3` - *medium* skin tone,
-- `4` - *medium-dark* skin tone,
-- `5` - *dark* skin tone
+- `1` - *light* skin tone 👍🏻,
+- `2` - *medium-light* skin tone 👍🏼,
+- `3` - *medium* skin tone 👍🏽,
+- `4` - *medium-dark* skin tone 👍🏾,
+- `5` - *dark* skin tone 👍🏿
 
 ![skin_tone_setup](skin_tone_setup.png)
 
