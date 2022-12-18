@@ -33,6 +33,17 @@ Either press `⌘Y` to Quick Look the result, or press `<enter>` copy it to your
 - <kbd>shift+ctrl+return</kbd> (⇧⌃↵): Copy the formal Unicode notation of the selected emoji) (e.g. `U+2615`) to your clipboard.
 - <kbd>cmd+return</kbd> (⌘↵): Copy the symbol of the selected emoji (e.g. "☕️") directly to your front-most application.
 
+### Set skin tone
+
+To change the emoji skin tone of all the emojis that support it, set the `alfred_emoji_skin_tone` environment variable in Alfred.
+Possible **integer** values are:
+
+- `1` - *light* skin tone,
+- `2` - *medium-light* skin tone,
+- `3` - *medium* skin tone,
+- `4` - *medium-dark* skin tone,
+- `5` - *dark* skin tone
+
 ### Notes
 
 Kudos to [jsumners/alfred-emoji](https://github.com/jsumners/alfred-emoji) for the initial inspiration.

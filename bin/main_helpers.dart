@@ -5,7 +5,7 @@ final AlfredWorkflow _workflow = AlfredWorkflow(
     fromEncodable: (Map<String, dynamic> json) => AlfredItems.fromJson(json),
     maxEntries: 10240,
     expiryPolicy: const CreatedExpiryPolicy(
-      Duration(days: 180),
+      Duration(days: 7),
     ),
   ),
 );
@@ -35,8 +35,14 @@ void _showPlaceholder() {
   );
 }
 
-Future<void> _performSearch(String query) async {
-  final AlgoliaQuerySnapshot snapshot = await AlgoliaSearch.query(query);
+Future<void> _performSearch(
+  String query, {
+  Fitzpatrick? tone,
+}) async {
+  final AlgoliaQuerySnapshot snapshot = await AlgoliaSearch.query(
+    query,
+    tone: tone,
+  );
 
   if (snapshot.nbHits > 0) {
     final AlfredItems items = AlfredItems(
@@ -61,8 +67,7 @@ Future<void> _performSearch(String query) async {
           icon: AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),
           mods: {
             {AlfredItemModKey.alt}: AlfredItemMod(
-              subtitle:
-                  'Copy ":${emoji.shortName}:" to clipboard',
+              subtitle: 'Copy ":${emoji.shortName}:" to clipboard',
               arg: ':${emoji.shortName}:',
               icon:
                   AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),

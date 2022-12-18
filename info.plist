@@ -211,7 +211,38 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string># Alfred Emoji Workflow
+
+This workflow allows you to quickly search for and copy emoji to your clipboard.
+
+## Usage
+
+Just type `ej` followed by your search query.
+
+`ej smile`
+
+
+Either press `⌘Y` to Quick Look the result, or press `&lt;enter&gt;` copy it to your clipboard.
+
+### Modifier keys
+
+- &lt;kbd&gt;return&lt;/kbd&gt; (↵): Copy the symbol of the selected emoji (e.g. "☕️") to your clipboard.
+- &lt;kbd&gt;option+return&lt;/kbd&gt; (⌥↵): Copy the code of the selected emoji) (e.g. `:coffee:`) to your clipboard.
+- &lt;kbd&gt;ctrl+return&lt;/kbd&gt; (⌃↵): Copy the hexadecimal HTML Entity of the selected emoji) (e.g. `&amp;#x2615;`) to your clipboard.
+- &lt;kbd&gt;shift+return&lt;/kbd&gt; (⇧↵): Copy the Python source of the selected emoji) (e.g. `u"\U0002615"`) to your clipboard.
+- &lt;kbd&gt;shift+ctrl+return&lt;/kbd&gt; (⇧⌃↵): Copy the formal Unicode notation of the selected emoji) (e.g. `U+2615`) to your clipboard.
+- &lt;kbd&gt;cmd+return&lt;/kbd&gt; (⌘↵): Copy the symbol of the selected emoji (e.g. "☕️") directly to your front-most application.
+
+### Set skin tone
+
+To change the emoji skin tone of all the emojis that support it, set the `alfred_emoji_skin_tone` environment variable in Alfred.
+Possible **integer** values are:
+
+- `1` - *light* skin tone,
+- `2` - *medium-light* skin tone,
+- `3` - *medium* skin tone,
+- `4` - *medium-dark* skin tone,
+- `5` - *dark* skin tone</string>
 	<key>uidata</key>
 	<dict>
 		<key>20F33E0E-43A7-43D1-8B65-BFBC17B87136</key>
@@ -252,10 +283,17 @@
 	</dict>
 	<key>userconfigurationconfig</key>
 	<array/>
+	<key>variables</key>
+	<dict>
+		<key>alfred_emoji_skin_tone</key>
+		<string></string>
+	</dict>
 	<key>variablesdontexport</key>
-	<array/>
+	<array>
+		<string>alfred_emoji_skin_tone</string>
+	</array>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/techouse/alfred-emoji</string>
 </dict>

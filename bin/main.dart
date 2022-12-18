@@ -1,4 +1,4 @@
-import 'dart:io' show File, exitCode, stdout;
+import 'dart:io' show File, Platform, exitCode, stdout;
 
 import 'package:alfred_workflow/alfred_workflow.dart';
 import 'package:algolia/algolia.dart';
@@ -8,6 +8,7 @@ import 'package:stash/stash_api.dart';
 
 import 'src/env/env.dart';
 import 'src/extensions/string_helpers.dart';
+import 'src/models/fitzpatrick.dart';
 import 'src/models/search_result.dart';
 import 'src/services/algolia_search.dart';
 import 'src/services/emoji_downloader.dart';
@@ -42,14 +43,36 @@ void main(List<String> arguments) {
       final String query =
           args['query'].replaceAll(RegExp(r'\s+'), ' ').trim().toLowerCase();
 
-      if (_verbose) stdout.writeln('Query: "$query"');
+      final int? toneIndex = int.tryParse(
+        Platform.environment['alfred_emoji_skin_tone'] ?? '',
+      );
+      late final Fitzpatrick? tone;
+
+      if (toneIndex != null && toneIndex >= 1 && toneIndex <= 5) {
+        try {
+          tone = Fitzpatrick.values.elementAt(toneIndex - 1);
+        } on RangeError {
+          tone = null;
+        }
+      } else {
+        tone = null;
+      }
+
+      if (_verbose) {
+        stdout.writeln('Query: "$query"');
+        if (tone != null) stdout.writeln('Tone: $tone');
+      }
 
       if (query.isEmpty) {
         _showPlaceholder();
       } else {
-        _workflow.cacheKey = query.md5hex;
+        _workflow.cacheKey =
+            tone != null ? '$query-$tone'.md5hex : query.md5hex;
         if (await _workflow.getItems() == null) {
-          await _performSearch(query.toLowerCase());
+          await _performSearch(
+            query.toLowerCase(),
+            tone: tone,
+          );
         }
       }
     } on FormatException catch (err) {

@@ -2,6 +2,7 @@ import 'package:algolia/algolia.dart'
     show Algolia, AlgoliaQuery, AlgoliaQuerySnapshot;
 
 import '../env/env.dart';
+import '../models/fitzpatrick.dart';
 import '../models/search_result.dart';
 
 class AlgoliaSearch {
@@ -12,7 +13,10 @@ class AlgoliaSearch {
     apiKey: Env.algoliaSearchOnlyApiKey,
   );
 
-  static Future<AlgoliaQuerySnapshot> query(String queryString) async {
+  static Future<AlgoliaQuerySnapshot> query(
+    String queryString, {
+    Fitzpatrick? tone,
+  }) async {
     final AlgoliaQuery query = _algolia.instance
         .index(Env.algoliaSearchIndex)
         .query(queryString)
@@ -20,6 +24,8 @@ class AlgoliaSearch {
         .setPage(0)
         .setHitsPerPage(20);
 
-    return await query.getObjects();
+    return tone != null
+        ? await (query.setOptionalFilter('variants:$tone')).getObjects()
+        : await query.getObjects();
   }
 }
