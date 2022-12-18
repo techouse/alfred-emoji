@@ -33,8 +33,12 @@ Either press `⌘Y` to Quick Look the result, or press `<enter>` copy it to your
 - <kbd>shift+ctrl+return</kbd> (⇧⌃↵): Copy the formal Unicode notation of the selected emoji) (e.g. `U+2615`) to your clipboard.
 - <kbd>cmd+return</kbd> (⌘↵): Copy the symbol of the selected emoji (e.g. "☕️") directly to your front-most application.
 
-### Note
+### Notes
 
-The emoji index was built from [i-Naji/emojis](https://github.com/i-Naji/emojis).
-The displayed emoji images are from [joypixels/emoji-assets](https://github.com/joypixels/emoji-assets).
-The lightning fast search is powered by [Algolia](https://www.algolia.com).
+Kudos to [jsumners/alfred-emoji](https://github.com/jsumners/alfred-emoji) for the initial inspiration.
+
+Emoji index built from [i-Naji/emojis](https://github.com/i-Naji/emojis).
+
+Displayed emoji images from [joypixels/emoji-assets](https://github.com/joypixels/emoji-assets).
+
+Lightning fast search is powered by [Algolia](https://www.algolia.com).
