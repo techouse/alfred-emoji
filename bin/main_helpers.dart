@@ -41,26 +41,60 @@ Future<void> _performSearch(String query) async {
   if (snapshot.nbHits > 0) {
     final AlfredItems items = AlfredItems(
       await Future.wait(snapshot.hits
-          .map((snapshot) => SearchResult.fromJson(snapshot.data))
-          .map((result) async {
-        final File? image = await EmojiDownloader(
-          emoji: result.char,
-        ).downloadImage();
+          .map((AlgoliaObjectSnapshot snapshot) =>
+              SearchResult.fromJson(snapshot.data))
+          .map((SearchResult emoji) async {
+        final File? image =
+            await EmojiDownloader(emoji: emoji.char).downloadImage();
 
         return AlfredItem(
-          uid: result.objectID,
-          title: result.shortName,
-          subtitle: '${result.name}: ${result.keywords.join(', ')}',
-          arg: result.char,
+          uid: emoji.objectID,
+          title: emoji.name,
+          subtitle: '${emoji.char} :${emoji.shortName}:',
+          arg: emoji.char,
           match:
-              '${result.shortName} ${result.name} ${result.keywords.join(', ')}',
+              '${emoji.shortName} ${emoji.name} ${emoji.keywords.join(', ')}',
           text: AlfredItemText(
-            copy: result.char,
-            largeType: result.name,
+            copy: emoji.char,
+            largeType: emoji.name,
           ),
-          icon: AlfredItemIcon(
-            path: image != null ? image.absolute.path : 'question.png',
-          ),
+          icon: AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),
+          mods: {
+            {AlfredItemModKey.alt}: AlfredItemMod(
+              subtitle:
+                  'Copy ":${emoji.shortName}:" to clipboard',
+              arg: ':${emoji.shortName}:',
+              icon:
+                  AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),
+            ),
+            {AlfredItemModKey.shift}: AlfredItemMod(
+              subtitle: 'Copy Python source of "${emoji.char}" to clipboard',
+              arg: 'u"\\U000'
+                  '${emoji.char.runes.first.toRadixString(16).toUpperCase()}'
+                  '${emoji.char.runes.toList().sublist(1).map(
+                        (int i) => '\\u${i.toRadixString(16).toUpperCase()}',
+                      ).join()}"',
+              icon:
+                  AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),
+            ),
+            {AlfredItemModKey.ctrl}: AlfredItemMod(
+              subtitle: 'Copy HTML Entity of "${emoji.char}" to clipboard',
+              arg: emoji.char.runes
+                  .map((int i) => '&#x${i.toRadixString(16)};')
+                  .join(),
+              icon:
+                  AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),
+            ),
+            {AlfredItemModKey.ctrl, AlfredItemModKey.shift}: AlfredItemMod(
+              subtitle:
+                  'Copy formal Unicode notation of "${emoji.char}" to clipboard',
+              arg: emoji.char.runes
+                  .map((int i) => 'U+${i.toRadixString(16).toUpperCase()}')
+                  .join(', '),
+              icon:
+                  AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),
+            ),
+          },
           valid: true,
         );
       }).toList()),

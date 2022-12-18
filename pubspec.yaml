@@ -3,7 +3,7 @@ description: Search for emojis and copy them to the clipboard easily.
 
 publish_to: 'none'
 
-version: 1.0.0
+version: 1.0.1
 
 environment:
   sdk: '>=2.18.6 <3.0.0'
@@ -11,7 +11,7 @@ environment:
 dependencies:
   algolia: ^1.1.1
   args: ^2.3.1
-  alfred_workflow: ^0.2.11
+  alfred_workflow: ^0.2.12
   cli_script: ^0.2.6
   crypto: ^3.0.2
   emojis: ^0.9.9
