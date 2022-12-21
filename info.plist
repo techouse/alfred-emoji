@@ -293,7 +293,7 @@ Possible **integer** values are:
 		<string>alfred_emoji_skin_tone</string>
 	</array>
 	<key>version</key>
-	<string>1.0.4</string>
+	<string>1.0.5</string>
 	<key>webaddress</key>
 	<string>https://github.com/techouse/alfred-emoji</string>
 </dict>

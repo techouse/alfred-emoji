@@ -9,10 +9,13 @@ part of 'search_result.dart';
 SearchResult _$SearchResultFromJson(Map<String, dynamic> json) => SearchResult(
       objectID: json['objectID'] as String,
       name: json['name'] as String,
+      shortNameWithoutVariant: json['shortNameWithoutVariant'] as String,
       char: json['char'] as String,
       shortName: json['shortName'] as String,
       emojiGroup: $enumDecode(_$EmojiGroupEnumMap, json['emojiGroup']),
       emojiSubgroup: $enumDecode(_$EmojiSubgroupEnumMap, json['emojiSubgroup']),
+      variants:
+          (json['variants'] as List<dynamic>).map((e) => e as String).toList(),
       keywords: (json['keywords'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -31,7 +34,9 @@ Map<String, dynamic> _$SearchResultToJson(SearchResult instance) =>
       'modifiable': instance.modifiable,
       'keywords': instance.keywords,
       'objectID': instance.objectID,
+      'shortNameWithoutVariant': instance.shortNameWithoutVariant,
       'image': instance.image,
+      'variants': instance.variants,
     };
 
 const _$EmojiGroupEnumMap = {

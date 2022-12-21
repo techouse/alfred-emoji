@@ -21,11 +21,13 @@ class AlgoliaSearch {
         .index(Env.algoliaSearchIndex)
         .query(queryString)
         .setAttributesToRetrieve(SearchResult.attributesToRetrieve)
+        .filters([
+          if (tone != null) 'variants:$tone<score=1>',
+          'variants:tone0<score=0>',
+        ].join(' OR '))
         .setPage(0)
         .setHitsPerPage(20);
 
-    return tone != null
-        ? await (query.setOptionalFilter('variants:$tone')).getObjects()
-        : await query.getObjects();
+    return await query.getObjects();
   }
 }
