@@ -6,7 +6,7 @@
 
 This workflow allows you to quickly search for and copy emoji to your clipboard.
 
-<video src="https://user-images.githubusercontent.com/1174328/209026749-ab487a69-40b8-4123-9e42-dbd852b23c36.mp4" type="video/mp4" autoplay="true" muted="true"></video>
+<video src="https://user-images.githubusercontent.com/1174328/209026749-ab487a69-40b8-4123-9e42-dbd852b23c36.mp4" type="video/mp4" autoplay muted loop></video>
 
 ## Installation
 
