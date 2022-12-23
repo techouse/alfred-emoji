@@ -75,7 +75,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./emoji -u</string>
+				<string>arch -x86_64 ./emoji -u</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -169,7 +169,7 @@
 				<key>runningsubtext</key>
 				<string>Fetching emojis ...</string>
 				<key>script</key>
-				<string>./emoji -q "{query}"</string>
+				<string>arch -x86_64 ./emoji -q "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -293,7 +293,7 @@ Possible **integer** values are:
 		<string>alfred_emoji_skin_tone</string>
 	</array>
 	<key>version</key>
-	<string>1.0.6</string>
+	<string>1.0.7</string>
 	<key>webaddress</key>
 	<string>https://github.com/techouse/alfred-emoji</string>
 </dict>
