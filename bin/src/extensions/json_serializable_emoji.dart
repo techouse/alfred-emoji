@@ -5,9 +5,9 @@ extension JsonSerializableEmoji on Emoji {
 
   Map<String, dynamic> toJson() {
     final List<String> variants = shortName
-            .split('_')
-            .where((String s) => _tonePattern.hasMatch(s))
-            .toList();
+        .split('_')
+        .where((String s) => _tonePattern.hasMatch(s))
+        .toList();
 
     return {
       'objectID': char.runes.map((e) => e.toRadixString(16)).join('-'),
