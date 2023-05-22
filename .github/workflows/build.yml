@@ -16,6 +16,8 @@ jobs:
     name: "Build"
     runs-on: macos-latest
     environment: build
+    permissions:
+      contents: write
     env:
       WORKFLOW_NAME: emoji
       GITHUB_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}
