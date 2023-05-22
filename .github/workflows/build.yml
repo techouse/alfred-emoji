@@ -58,14 +58,16 @@ jobs:
           /usr/libexec/PlistBuddy -c "Set :version $VERSION" ./info.plist
           /usr/libexec/PlistBuddy -c "Set :webaddress $GITHUB_REPOSITORY_URL" ./info.plist
       - name: Install dependencies
-        id: install
-        run: dart pub get
+        id: install_dependencies
+        run: |
+          dart pub get
+          dart pub global activate -sgit https://github.com/techouse/dart_pubspec_licenses_lite
       - name: Run Dart code generation
-        id: generate
+        id: generate_code
         run: dart run build_runner build --delete-conflicting-outputs
       - name: Build executable
-        id: build
-        run: bash build.sh
+        id: build_executable
+        run: bash ./build.sh
       - name: Install the Apple certificate
         id: install_certificate
         env:
@@ -89,7 +91,7 @@ jobs:
           security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
           security list-keychain -d user -s $KEYCHAIN_PATH
       - name: Sign executable
-        id: sign
+        id: sign_executable
         env:
           BUILD_CERTIFICATE_SHA1: ${{ secrets.BUILD_CERTIFICATE_SHA1 }}
           BUNDLE_ID: ${{ vars.BUNDLE_ID }}
@@ -106,7 +108,7 @@ jobs:
             --verbose=4 \
             ./build/dist/workflow
       - name: Verify signature
-        id: verify_signature
+        id: verify_executable_signature
         env:
           TEAM_ID: ${{ secrets.TEAM_ID }}
         run: |
@@ -116,7 +118,7 @@ jobs:
             exit 1
           fi
       - name: Package executable into ZIP archive
-        id: zip
+        id: zip_executable
         run: |
           set -e
           zip -j ./build/dist/workflow.zip ./build/dist/workflow
@@ -135,7 +137,7 @@ jobs:
             --team-id "$TEAM_ID" \
             --password "$NOTARYTOOL_PASSWORD"
       - name: Notarize executable
-        id: notarize
+        id: notarize_executable
         env:
           NOTARYTOOL_KEYCHAIN_PROFILE: ${{ vars.NOTARYTOOL_KEYCHAIN_PROFILE }}
         run: |
@@ -145,7 +147,7 @@ jobs:
             --keychain-profile "$NOTARYTOOL_KEYCHAIN_PROFILE" \
             --wait
       - name: Delete obsolete ZIP archive
-        id: delete_zip
+        id: delete_zip_archive
         run: |
           set -e
           rm -rf ./build/dist/workflow.zip
@@ -158,7 +160,7 @@ jobs:
           popd || exit
           echo "artifactPath=build/${WORKFLOW_NAME}-v${VERSION}.alfredworkflow" >> $GITHUB_ENV
       - name: Release
-        id: release
+        id: release_workflow
         uses: softprops/action-gh-release@v1
         with:
           files: ${{ env.artifactPath }}
