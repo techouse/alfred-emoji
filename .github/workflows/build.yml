@@ -18,6 +18,7 @@ jobs:
     environment: build
     env:
       WORKFLOW_NAME: emoji
+      GITHUB_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}
     steps:
       - uses: dart-lang/setup-dart@v1
         with:
@@ -46,7 +47,7 @@ jobs:
           set -e
           mv .env.example .env
           sed -i '' "s/APP_VERSION=.*/APP_VERSION=$VERSION/" .env
-          sed -i '' "s/GITHUB_REPOSITORY_URL=.*/GITHUB_REPOSITORY_URL=${{ github.server_url }}/${{ github.repository }}/" .env
+          sed -i '' "s/GITHUB_REPOSITORY_URL=.*/GITHUB_REPOSITORY_URL=$GITHUB_REPOSITORY_URL/" .env
           sed -i '' "s/ALGOLIA_SEARCH_INDEX=.*/ALGOLIA_SEARCH_INDEX=$ALGOLIA_SEARCH_INDEX/" .env
           sed -i '' "s/ALGOLIA_APPLICATION_ID=.*/ALGOLIA_APPLICATION_ID=$ALGOLIA_APPLICATION_ID/" .env
           sed -i '' "s/ALGOLIA_SEARCH_ONLY_API_KEY=.*/ALGOLIA_SEARCH_ONLY_API_KEY=$ALGOLIA_SEARCH_ONLY_API_KEY/" .env
@@ -55,7 +56,7 @@ jobs:
         run: |
           set -e
           /usr/libexec/PlistBuddy -c "Set :version $VERSION" ./info.plist
-          /usr/libexec/PlistBuddy -c "Set :webaddress ${{ github.server_url }}/${{ github.repository }}" ./info.plist
+          /usr/libexec/PlistBuddy -c "Set :webaddress $GITHUB_REPOSITORY_URL" ./info.plist
       - name: Install dependencies
         id: install
         run: dart pub get
