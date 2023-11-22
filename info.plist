@@ -235,14 +235,15 @@ Either press `⌘Y` to Quick Look the result, or press `&lt;enter&gt;` copy it t
 
 ### Set skin tone
 
-To change the emoji skin tone of all the emojis that support it, set the `alfred_emoji_skin_tone` environment variable in Alfred.
-Possible **integer** values are:
+To change the emoji skin tone of all the emojis that support it, configure the workflow.
+Possible values are:
 
-- `1` - *light* skin tone,
-- `2` - *medium-light* skin tone,
-- `3` - *medium* skin tone,
-- `4` - *medium-dark* skin tone,
-- `5` - *dark* skin tone</string>
+- *no* skin tone 👍,
+- *light* skin tone 👍🏻,
+- *medium-light* skin tone 👍🏼,
+- *medium* skin tone 👍🏽,
+- *medium-dark* skin tone 👍🏾,
+- *dark* skin tone 👍🏿</string>
 	<key>uidata</key>
 	<dict>
 		<key>20F33E0E-43A7-43D1-8B65-BFBC17B87136</key>
@@ -282,15 +283,49 @@ Possible **integer** values are:
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
-	<array/>
-	<key>variables</key>
-	<dict>
-		<key>alfred_emoji_skin_tone</key>
-		<string></string>
-	</dict>
-	<key>variablesdontexport</key>
 	<array>
-		<string>alfred_emoji_skin_tone</string>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>0</string>
+				<key>pairs</key>
+				<array>
+					<array>
+						<string>no skin tone 👍</string>
+						<string>0</string>
+					</array>
+					<array>
+						<string>light skin tone 👍🏻</string>
+						<string>1</string>
+					</array>
+					<array>
+						<string>medium-light skin tone 👍🏼</string>
+						<string>2</string>
+					</array>
+					<array>
+						<string>medium skin tone 👍🏽</string>
+						<string>3</string>
+					</array>
+					<array>
+						<string>medium-dark skin tone 👍🏾</string>
+						<string>4</string>
+					</array>
+					<array>
+						<string>dark skin tone 👍🏿</string>
+						<string>5</string>
+					</array>
+				</array>
+			</dict>
+			<key>description</key>
+			<string>Change the emoji skin tone of all the emojis that support it</string>
+			<key>label</key>
+			<string>Emoji skin tone</string>
+			<key>type</key>
+			<string>popupbutton</string>
+			<key>variable</key>
+			<string>alfred_emoji_skin_tone</string>
+		</dict>
 	</array>
 	<key>version</key>
 	<string></string>

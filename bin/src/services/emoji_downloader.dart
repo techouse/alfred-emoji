@@ -19,8 +19,8 @@ class EmojiDownloader {
 
     final String fileName = '${chars.join('-')}.png';
     final String filePath =
-        _directoryPath != null && await Directory(_directoryPath!).exists()
-            ? path.join(_directoryPath!, fileName)
+        _directoryPath != null && await Directory(_directoryPath).exists()
+            ? path.join(_directoryPath, fileName)
             : path.join(
                 path.dirname(Platform.script.toFilePath()),
                 'image_cache',

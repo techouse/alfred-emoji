@@ -1,4 +1,4 @@
-import 'dart:io' show File, Platform, exitCode, stdout;
+import 'dart:io' show File, exitCode, stdout;
 
 import 'package:alfred_workflow/alfred_workflow.dart';
 import 'package:algolia/algolia.dart';
@@ -43,8 +43,9 @@ void main(List<String> arguments) {
       final String query =
           args['query'].replaceAll(RegExp(r'\s+'), ' ').trim().toLowerCase();
 
+      final Map? userDefaults = await _workflow.getUserDefaults();
       final int? toneIndex = int.tryParse(
-        Platform.environment['alfred_emoji_skin_tone'] ?? '',
+        userDefaults?['alfred_emoji_skin_tone'] as String? ?? '',
       );
       late final Fitzpatrick? tone;
 
