@@ -3,20 +3,20 @@ description: Search for emojis and copy them to the clipboard easily.
 
 publish_to: 'none'
 
-version: 1.1.0
+version: 1.1.1
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
 
 dependencies:
-  algolia: ^1.1.2
+  algoliasearch: ^1.2.0
   args: ^2.4.2
-  alfred_workflow: ^0.5.0
+  alfred_workflow: ^0.5.1
   cli_script: ^1.0.0
   crypto: ^3.0.3
   emojis: ^0.9.9
   envied: ^0.5.2
-  http: ">=0.13.0 <2.0.0"
+  http: ^1.1.2
   json_annotation: ^4.8.1
   path: ^1.8.3
   stash: ^5.0.2
@@ -26,7 +26,3 @@ dev_dependencies:
   envied_generator: ^0.5.2
   json_serializable: ^6.7.1
   lints: ^3.0.0
-
-dependency_overrides:
-  http: ^1.1.1
-  uuid: ^4.2.1

@@ -1,7 +1,8 @@
 import 'dart:io' show File, exitCode, stdout;
 
 import 'package:alfred_workflow/alfred_workflow.dart';
-import 'package:algolia/algolia.dart';
+import 'package:algoliasearch/src/model/hit.dart';
+import 'package:algoliasearch/src/model/search_response.dart';
 import 'package:args/args.dart';
 import 'package:cli_script/cli_script.dart';
 import 'package:stash/stash_api.dart';

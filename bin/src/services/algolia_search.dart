@@ -1,5 +1,4 @@
-import 'package:algolia/algolia.dart'
-    show Algolia, AlgoliaQuery, AlgoliaQuerySnapshot;
+import 'package:algoliasearch/algoliasearch_lite.dart';
 
 import '../env/env.dart';
 import '../models/fitzpatrick.dart';
@@ -8,26 +7,28 @@ import '../models/search_result.dart';
 class AlgoliaSearch {
   AlgoliaSearch._();
 
-  static final Algolia _algolia = Algolia.init(
-    applicationId: Env.algoliaApplicationId,
+  static final SearchClient _client = SearchClient(
+    appId: Env.algoliaApplicationId,
     apiKey: Env.algoliaSearchOnlyApiKey,
   );
 
-  static Future<AlgoliaQuerySnapshot> query(
+  static Future<SearchResponse> query(
     String queryString, {
     Fitzpatrick? tone,
-  }) async {
-    final AlgoliaQuery query = _algolia.instance
-        .index(Env.algoliaSearchIndex)
-        .query(queryString)
-        .setAttributesToRetrieve(SearchResult.attributesToRetrieve)
-        .filters([
-          if (tone != null) 'variants:$tone<score=1>',
-          'variants:tone0<score=0>',
-        ].join(' OR '))
-        .setPage(0)
-        .setHitsPerPage(20);
+  }) =>
+      _client.searchIndex(
+        request: SearchForHits(
+          indexName: Env.algoliaSearchIndex,
+          query: queryString,
+          attributesToRetrieve: SearchResult.attributesToRetrieve,
+          filters: [
+            if (tone != null) 'variants:$tone<score=1>',
+            'variants:tone0<score=0>',
+          ].join(' OR '),
+          page: 0,
+          hitsPerPage: 20,
+        ),
+      );
 
-    return await query.getObjects();
-  }
+  static dispose() => _client.dispose();
 }
