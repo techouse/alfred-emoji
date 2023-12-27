@@ -44,9 +44,10 @@ void main(List<String> arguments) {
       final String query =
           args['query'].replaceAll(RegExp(r'\s+'), ' ').trim().toLowerCase();
 
-      final Map? userDefaults = await _workflow.getUserDefaults();
+      final Map<String, AlfredUserConfiguration<AlfredUserConfigurationConfig>>?
+          userDefaults = await _workflow.getUserDefaults();
       final int? toneIndex = int.tryParse(
-        userDefaults?['alfred_emoji_skin_tone'] as String? ?? '',
+        userDefaults?['alfred_emoji_skin_tone']?.config.value as String? ?? '',
       );
       late final Fitzpatrick? tone;
 
